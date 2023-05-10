@@ -60,8 +60,9 @@ class Explosion {
         ctx.translate(this.x, this.y)
         ctx.rotate(this.angle)
         ctx.drawImage(this.image, this.spriteWidth * this.frame, 0,
-                                             // Should be divided by 2 instead of 3, but 3 works better?! 
-            this.spriteWidth, this.spriteHeight, 0 - this.width/3, 0 - this.height/3, this.width, this.height)
+                                             
+                            // Should be divided by 2 instead of 3, but 3 works better?! EDIT now 2 works better again?`tf
+            this.spriteWidth, this.spriteHeight, 0 - this.width/2, 0 - this.height/2, this.width, this.height)
         ctx.restore()
     }
 }
