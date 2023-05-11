@@ -34,7 +34,9 @@ class Explosion {
         this.image = new Image();
 
         //points to image source
-        this.image.src = './media/boom.png';
+        this.image.src = './media/images/boom.png';
+
+        //frame counter
         this.frame = 0
 
         //staggers animation
@@ -43,10 +45,20 @@ class Explosion {
 
         //sets random angle for explosion
         this.angle = Math.random() * 6.2;
+
+        //sound class constructor
+        this.deathAudio = new Audio();
+
+        //points to audio source
+
+        this.deathAudio.src = './media/sfx/mutantdie.wav';
     }
 
     //this method will animate our sprite
     update() {
+        //plays the adio once on frame 0
+        if (this.frame === 0) this.deathAudio.play();
+        
         this.timer++;
 
         if (this.timer % this.staggerValue === 0) {
@@ -55,14 +67,19 @@ class Explosion {
     }
 
     //this method will draw our sprite
-    draw() {    
+    draw() {  
+        //saves the sprite object
         ctx.save();
+        //translates rotation center point
         ctx.translate(this.x, this.y)
+        //then rotates the sprite
         ctx.rotate(this.angle)
+        //draws it
         ctx.drawImage(this.image, this.spriteWidth * this.frame, 0,
                                              
                             // Should be divided by 2 instead of 3, but 3 works better?! EDIT now 2 works better again?`tf
-            this.spriteWidth, this.spriteHeight, 0 - this.width/2, 0 - this.height/2, this.width, this.height)
+            this.spriteWidth, this.spriteHeight, 0 - this.width / 2, 0 - this.height / 2, this.width, this.height)
+        //restores the saved object
         ctx.restore()
     }
 }
